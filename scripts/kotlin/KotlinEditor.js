@@ -23,10 +23,9 @@
 
 var COMPLETION_ISNOT_AVAILABLE = "Switch to \"Client\" or \"Server\" mode to enable completion";
 
-var KotlinEditor = (function () {
+var KotlinEditor = (function (configuration) {
     function KotlinEditor() {
         var my_editor;
-        var configuration = new Configuration(Configuration.mode.ONRUN, Configuration.type.JAVA);
 
         var completionProvider;
         var highlightingProvider;

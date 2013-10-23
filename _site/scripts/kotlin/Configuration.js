@@ -21,10 +21,17 @@
  * Time: 6:44 PM
  */
 
-
-function Configuration(mode, type) {
+/***
+ *
+ * @param mode
+ * @param type
+ * @param autoMain indicates whether code should be wrapped in main routine before executing
+ * @constructor
+ */
+function Configuration(mode, type, autoMain) {
     this.mode = mode;
     this.type = type;
+    this.autoMain = autoMain || false
 }
 
 function ConfigurationType(runner, dependencies) {
@@ -35,14 +42,16 @@ function ConfigurationType(runner, dependencies) {
 ConfigurationType.runner = {JAVA:"java", JS:"js"};
 ConfigurationType.dependencies = {STANDARD:"standard", CANVAS:"canvas"};
 
-function ConfigurationMode(name, highlighter, completer) {
+function ConfigurationMode(name, highlighter, completion) {
     this.name = name;
     this.highlighter = highlighter;
-    this.completer = completer;
+    this.completer = completion;
 }
 
 ConfigurationType.runner = {JAVA:"java", JS:"js"};
 ConfigurationType.dependencies = {STANDARD:"standard", CANVAS:"canvas"};
+
+Configuration.autoMain = true;
 
 Configuration.mode = {CLIENT:new ConfigurationMode("client", null, null),
     SERVER:new ConfigurationMode("server", null, null),

@@ -20,8 +20,10 @@
  * Date: 3/30/12
  * Time: 3:37 PM
  */
+var kotlinServerBaseUrl = "http://kotlinsrv.labs.intellij.net/";
 
 var RunProvider = (function () {
+
 
     function RunProvider() {
 
@@ -36,6 +38,9 @@ var RunProvider = (function () {
         };
 
         function run(configuration, programText, args) {
+            if (configuration.autoMain) {
+                programText = "fun main(args: Array<String>) {"+programText+"}";
+            }
             if (configuration.type == Configuration.type.JAVA) {
                 runJava(configuration, programText, args);
             } else {
@@ -47,7 +52,7 @@ var RunProvider = (function () {
         function runJava(configuration, programText, args) {
             var confTypeString = Configuration.getStringFromType(configuration.type);
             $.ajax({
-                url:generateAjaxUrl("run", confTypeString),
+                url:generateAjaxUrl(kotlinServerBaseUrl, "run", confTypeString),
                 context:document.body,
                 success:function (data) {
                     if (checkDataForNull(data)) {
@@ -114,7 +119,7 @@ var RunProvider = (function () {
         function loadJsFromServer(configuration, i, arguments) {
             var confTypeString = Configuration.getStringFromType(configuration.type);
             $.ajax({
-                url:generateAjaxUrl("run", confTypeString),
+                url:generateAjaxUrl(kotlinServerBaseUrl, "run", confTypeString),
                 context:document.body,
                 success:function (data) {
                     if (checkDataForNull(data)) {

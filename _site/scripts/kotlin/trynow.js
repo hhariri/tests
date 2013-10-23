@@ -2,31 +2,22 @@
  * Created by hadihariri on 10/22/13.
  */
 
+
 var sessionId = -1;
 
-/*
-var configurationManager = new ConfigurationComponent();
-*/
-var editor = new KotlinEditor();
 var consoleView = new ConsoleView($("#console"), null);
+var errorView = new ProblemsView($("#problems"), null)
 var runButton = new Button($("#run"), null);
+
+var kotlinServerBaseUrl = "http://kotlinsrv.labs.intellij.net/";
+
+var configuration = new Configuration(Configuration.mode.ONRUN, Configuration.type.JAVA, true);
 var runProvider = new RunProvider();
-var kotlinServerBaseUrl = "http://kotlin-demo.jetbrains.com/";
-
-/*
-configurationManager.onChange = function (configuration) {
-    editor.setConfiguration(configuration);
-    consoleView.setConfiguration(configuration);
-};
-
-configurationManager.onFail = function (exception) {
-    consoleView.writeException(exception);
-};
-*/
+var editor = new KotlinEditor(configuration);
 
 runButton.onClick = function () {
     runButton.setEnabled(false);
-    runProvider.run(configurationManager.getConfiguration(), editor.getProgramText(), "");
+    runProvider.run(configuration, editor.getProgramText(), "");
 };
 
 runProvider.onExecutionFinish = function (output) {
