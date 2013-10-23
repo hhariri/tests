@@ -6,9 +6,28 @@
         <title>Kotlin Docs</title>
         <meta name="viewport" content="width=device-width">
 
+
         <script src="/tests/scripts/codemirror.js" type="text/javascript"></script>
         <script src="/tests/scripts/clike.js" type="text/javascript"></script>
         <script src="/tests/scripts/kotlin.js" type="text/javascript"></script>
+        <script src="/tests/scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+
+        <script src="/tests/scripts/kotlin/common.js" type="text/javascript"></script>
+        <script src="/tests/scripts/kotlin/Configuration.js" type="text/javascript"></script>
+        <script src="/tests/scripts/kotlin/KotlinEditor.js" type="text/javascript"></script>
+        <script src="/tests/scripts/kotlin/Shortcuts.js" type="text/javascript"></script>
+
+
+        <script src="/tests/scripts/kotlin/views/Button.js" type="text/javascript"></script>
+        <script src="/tests/scripts/kotlin/views/ConsoleView.js" type="text/javascript"></script>
+        <script src="/tests/scripts/kotlin/views/MainPageView.js" type="text/javascript"></script>
+
+        <script src="/tests/scripts/kotlin/providers/RunProvider.js" type="text/javascript"></script>
+
+
+
+
         <!-- syntax highlighting CSS -->
         <link rel="stylesheet" href="/tests/css/codemirror.css">
         <link rel="stylesheet" href="/tests/css/syntax.css">
@@ -28,17 +47,19 @@
           <p>
     This is some docs
 </p>
-        <textarea id="trynow" name="trynow">
+        <textarea id="code" name="code">
 
         </textarea>
-<script type="text/javascript">
-    var javaEditor = CodeMirror.fromTextArea(document.getElementById("trynow"), {
-        lineNumbers: true,
-        matchBrackets: true,
-        mode: "text/x-java"
-    });</script>
+
 
         </div>
+        <input type="button" value="Run" name="run" id="run">
+
+        <div id="console">
+            This is the console.
+        </div>
+        <script src="/tests/scripts/kotlin/trynow.js" type="text/javascript"></script>
+
 
     </body>
 </html>
